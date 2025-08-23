@@ -273,18 +273,7 @@ class LinearSVC(LinearClassifierMixin, SparseCoefMixin, BaseEstimator):
         random_state=None,
         max_iter=1000,
     ):
-        self.dual = dual
-        self.tol = tol
-        self.C = C
-        self.multi_class = multi_class
-        self.fit_intercept = fit_intercept
-        self.intercept_scaling = intercept_scaling
-        self.class_weight = class_weight
-        self.verbose = verbose
-        self.random_state = random_state
-        self.max_iter = max_iter
-        self.penalty = penalty
-        self.loss = loss
+
 
     @_fit_context(prefer_skip_nested_validation=True)
     def fit(self, X, y, sample_weight=None):
@@ -328,21 +317,7 @@ class LinearSVC(LinearClassifierMixin, SparseCoefMixin, BaseEstimator):
         )
 
         self.coef_, self.intercept_, n_iter_ = _fit_liblinear(
-            X,
-            y,
-            self.C,
-            self.fit_intercept,
-            self.intercept_scaling,
-            self.class_weight,
-            self.penalty,
-            _dual,
-            self.verbose,
-            self.max_iter,
-            self.tol,
-            self.random_state,
-            self.multi_class,
-            self.loss,
-            sample_weight=sample_weight,
+
         )
         # Backward compatibility: _fit_liblinear is used both by LinearSVC/R
         # and LogisticRegression but LogisticRegression sets a structured
