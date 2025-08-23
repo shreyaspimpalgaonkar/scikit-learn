@@ -3070,8 +3070,7 @@ class MultiTaskElasticNetCV(RegressorMixin, LinearModelCV):
     """
 
     _parameter_constraints: dict = {
-        **LinearModelCV._parameter_constraints,
-        "l1_ratio": [Interval(Real, 0, 1, closed="both"), "array-like"],
+
     }
     _parameter_constraints.pop("precompute")
     _parameter_constraints.pop("positive")
@@ -3345,18 +3344,7 @@ class MultiTaskLassoCV(RegressorMixin, LinearModelCV):
         selection="cyclic",
     ):
         super().__init__(
-            eps=eps,
-            n_alphas=n_alphas,
-            alphas=alphas,
-            fit_intercept=fit_intercept,
-            max_iter=max_iter,
-            tol=tol,
-            copy_X=copy_X,
-            cv=cv,
-            verbose=verbose,
-            n_jobs=n_jobs,
-            random_state=random_state,
-            selection=selection,
+
         )
 
     def _get_estimator(self):
@@ -3366,8 +3354,7 @@ class MultiTaskLassoCV(RegressorMixin, LinearModelCV):
         return True
 
     def __sklearn_tags__(self):
-        tags = super().__sklearn_tags__()
-        tags.target_tags.single_output = False
+
         return tags
 
     # This is necessary as LinearModelCV now supports sample_weight while
