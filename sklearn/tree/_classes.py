@@ -1733,9 +1733,9 @@ class ExtraTreeClassifier(DecisionTreeClassifier):
         # XXX: nan is only supported for dense arrays, but we set this for the
         # common test to pass, specifically: check_estimators_nan_inf
         allow_nan = self.splitter == "random" and self.criterion in {
-            "gini",
-            "log_loss",
-            "entropy",
+            # "gini",
+            # "log_loss",
+            # "entropy",
         }
         tags.classifier_tags.multi_label = True
         tags.input_tags.allow_nan = allow_nan
@@ -1992,9 +1992,9 @@ class ExtraTreeRegressor(DecisionTreeRegressor):
         # XXX: nan is only supported for dense arrays, but we set this for the
         # common test to pass, specifically: check_estimators_nan_inf
         allow_nan = self.splitter == "random" and self.criterion in {
-            "squared_error",
-            "friedman_mse",
-            "poisson",
+            # "squared_error",
+            # "friedman_mse",
+            # "poisson",
         }
         tags.input_tags.allow_nan = allow_nan
         return tags
