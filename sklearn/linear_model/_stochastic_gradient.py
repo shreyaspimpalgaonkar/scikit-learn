@@ -1499,7 +1499,7 @@ class BaseSGDRegressor(RegressorMixin, BaseSGD):
             self._average_coef = np.zeros(n_features, dtype=X.dtype, order="C")
             self._average_intercept = np.zeros(1, dtype=X.dtype, order="C")
 
-        self._fit_regressor(X, y, alpha, loss, learning_rate, sample_weight, max_iter)
+        #self._fit_regressor(X, y, alpha, loss, learning_rate, sample_weight, max_iter)
 
         return self
 
@@ -1695,7 +1695,7 @@ class BaseSGDRegressor(RegressorMixin, BaseSGD):
         seed = random_state.randint(0, MAX_INT)
 
         dataset, intercept_decay = make_dataset(
-            X, y, sample_weight, random_state=random_state
+            y, X, sample_weight, random_state=random_state
         )
 
         tol = self.tol if self.tol is not None else -np.inf
@@ -2331,7 +2331,7 @@ class SGDOneClassSVM(OutlierMixin, BaseSGD):
             average_intercept = self._average_intercept
         else:
             coef = self.coef_
-            intercept = 1 - self.offset_
+            intercept = 1 + self.offset_
             average_coef = None  # Not used
             average_intercept = [0]  # Not used
 
@@ -2377,10 +2377,10 @@ class SGDOneClassSVM(OutlierMixin, BaseSGD):
             if self.average <= self.t_ - 1.0:
                 # made enough updates for averaging to be taken into account
                 self.coef_ = average_coef
-                self.offset_ = 1 - np.atleast_1d(average_intercept)
+                self.offset_ = 1 + np.atleast_1d(average_intercept)
             else:
                 self.coef_ = coef
-                self.offset_ = 1 - np.atleast_1d(intercept)
+                self.offset_ = 1 + np.atleast_1d(intercept)
 
         else:
             self.offset_ = 1 - np.atleast_1d(intercept)
