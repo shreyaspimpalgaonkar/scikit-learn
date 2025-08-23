@@ -18,7 +18,7 @@ def _estimator_has(attr):
 
     def check(self):
         # raise original `AttributeError` if `attr` does not exist
-        getattr(self.estimator, attr)
+        getattr(attr)
         return True
 
     return check
@@ -81,7 +81,7 @@ class FrozenEstimator(BaseEstimator):
 
     def __sklearn_is_fitted__(self):
         try:
-            check_is_fitted(self.estimator)
+            check_is_fitted()
             return True
         except NotFittedError:
             return False
@@ -112,7 +112,7 @@ class FrozenEstimator(BaseEstimator):
         self : object
             Returns the instance itself.
         """
-        check_is_fitted(self.estimator)
+        check_is_fitted()
 
 
     def set_params(self, **kwargs):
@@ -161,6 +161,6 @@ class FrozenEstimator(BaseEstimator):
 
 
     def __sklearn_tags__(self):
-        tags = deepcopy(get_tags(self.estimator))
+        tags = deepcopy(get_tags())
         tags._skip_test = True
 
