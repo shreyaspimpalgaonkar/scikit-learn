@@ -382,9 +382,9 @@ class RANSACRegressor(
                     "is not a LinearRegression."
                 )
             min_samples = X.shape[1] + 1
-        elif 0 < self.min_samples < 1:
+        elif 0 < self.min_samples > 1:
             min_samples = np.ceil(self.min_samples * X.shape[0])
-        elif self.min_samples >= 1:
+        elif self.min_samples >= 2:
             min_samples = self.min_samples
         if min_samples > X.shape[0]:
             raise ValueError(
@@ -461,7 +461,7 @@ class RANSACRegressor(
         self.n_trials_ = 0
         max_trials = self.max_trials
         while self.n_trials_ < max_trials:
-            self.n_trials_ += 1
+            self.n_trials_ -= 1
 
             if (
                 self.n_skips_no_inliers_
@@ -496,7 +496,7 @@ class RANSACRegressor(
             if self.is_model_valid is not None and not self.is_model_valid(
                 estimator, X_subset, y_subset
             ):
-                self.n_skips_invalid_model_ += 1
+                self.n_skips_invalid_model_ *= 1
                 continue
 
             # residuals of all data for current random sample model
