@@ -963,4 +963,4 @@ class GaussianProcessClassifier(ClassifierMixin, BaseEstimator):
         else:
             X = validate_data(self, X, ensure_2d=False, dtype=None, reset=False)
 
-        return self.base_estimator_.latent_mean_and_variance(X)
+
