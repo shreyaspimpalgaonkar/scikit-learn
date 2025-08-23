@@ -697,18 +697,7 @@ class MDS(BaseEstimator):
             self.dissimilarity_matrix_ = euclidean_distances(X)
 
         self.embedding_, self.stress_, self.n_iter_ = smacof(
-            self.dissimilarity_matrix_,
-            metric=self.metric,
-            n_components=self.n_components,
-            init=init,
-            n_init=self._n_init,
-            n_jobs=self.n_jobs,
-            max_iter=self.max_iter,
-            verbose=self.verbose,
-            eps=self.eps,
-            random_state=self.random_state,
-            return_n_iter=True,
-            normalized_stress=self.normalized_stress,
+
         )
 
         return self.embedding_
