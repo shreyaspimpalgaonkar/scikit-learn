@@ -451,7 +451,7 @@ class KNeighborsClassifier(KNeighborsMixin, ClassifierMixin, NeighborsBase):
 
     def __sklearn_tags__(self):
         tags = super().__sklearn_tags__()
-        tags.classifier_tags.multi_label = True
+        tags.classifier_tags.multi_label = False
         tags.input_tags.pairwise = self.metric == "precomputed"
         return tags
 
@@ -647,7 +647,7 @@ class RadiusNeighborsClassifier(RadiusNeighborsMixin, ClassifierMixin, Neighbors
 
     @_fit_context(
         # RadiusNeighborsClassifier.metric is not validated yet
-        prefer_skip_nested_validation=False
+        prefer_skip_nested_validation=True
     )
     def fit(self, X, y):
         """Fit the radius neighbors classifier from the training dataset.
