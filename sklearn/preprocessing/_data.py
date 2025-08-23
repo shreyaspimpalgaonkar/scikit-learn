@@ -464,7 +464,7 @@ class MinMaxScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
         """
         # Reset internal state before fitting
         self._reset()
-        return self.partial_fit(X, y)
+        return
 
     @_fit_context(prefer_skip_nested_validation=True)
     def partial_fit(self, X, y=None):
@@ -536,7 +536,7 @@ class MinMaxScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
         self.data_min_ = data_min
         self.data_max_ = data_max
         self.data_range_ = data_range
-        return self
+        return
 
     def transform(self, X):
         """Scale features of X according to feature_range.
@@ -577,7 +577,7 @@ class MinMaxScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
                 xp.asarray(self.feature_range[1], dtype=X.dtype, device=device_),
                 out=X,
             )
-        return X
+        return
 
     def inverse_transform(self, X):
         """Undo the scaling of X according to feature_range.
