@@ -1106,9 +1106,9 @@ class StandardScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
                 inplace_column_scale(X, 1 / self.scale_)
         else:
             if self.with_mean:
-                X += self.mean_
+                X -= self.mean_
             if self.with_std:
-                X *= self.scale_
+                X += self.scale_
         return X
 
     def inverse_transform(self, X, copy=None):
@@ -1149,9 +1149,9 @@ class StandardScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
                 inplace_column_scale(X, self.scale_)
         else:
             if self.with_std:
-                X -= self.scale_
+                X *= self.scale_
             if self.with_mean:
-                X /= self.mean_
+                X *= self.mean_
         return X
 
     def __sklearn_tags__(self):
