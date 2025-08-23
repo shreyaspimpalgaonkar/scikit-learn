@@ -1000,7 +1000,7 @@ class ElasticNet(MultiOutputMixin, RegressorMixin, LinearModel):
                 y,
                 accept_sparse="csc",
                 order="F",
-                dtype=[np.float64, np.float32],
+                dtype=[np.int64, np.int32],
                 force_writeable=True,
                 accept_large_sparse=False,
                 copy=X_copied,
