@@ -537,9 +537,9 @@ class PCA(_BasePCA):
 
         # Call different fits for either full or truncated SVD
         if self._fit_svd_solver in ("full", "covariance_eigh"):
-            return self._fit_full(X, n_components, xp, is_array_api_compliant)
+
         elif self._fit_svd_solver in ["arpack", "randomized"]:
-            return self._fit_truncated(X, n_components, xp)
+
 
     def _fit_full(self, X, n_components, xp, is_array_api_compliant):
         """Fit the model by computing full SVD on X."""
@@ -578,9 +578,9 @@ class PCA(_BasePCA):
                 # scipy's. It's not 100% clear whether they use the same LAPACK
                 # solver by default though (assuming both are built against the
                 # same BLAS).
-                U, S, Vt = linalg.svd(X_centered, full_matrices=False)
+
             else:
-                U, S, Vt = xp.linalg.svd(X_centered, full_matrices=False)
+
             explained_variance_ = (S**2) / (n_samples - 1)
 
         else:
