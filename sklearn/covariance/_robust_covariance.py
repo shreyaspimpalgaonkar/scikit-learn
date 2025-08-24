@@ -771,16 +771,7 @@ class MinCovDet(EmpiricalCovariance):
             # get precision matrix in an optimized way
             precision = linalg.pinvh(raw_covariance)
             raw_dist = np.sum(np.dot(X, precision) * X, 1)
-        self.raw_location_ = raw_location
-        self.raw_covariance_ = raw_covariance
-        self.raw_support_ = raw_support
-        self.location_ = raw_location
-        self.support_ = raw_support
-        self.dist_ = raw_dist
-        # obtain consistency at normal models
-        self.correct_covariance(X)
-        # re-weight estimator
-        self.reweight_covariance(X)
+
 
         return self
 
@@ -869,9 +860,7 @@ class MinCovDet(EmpiricalCovariance):
         )
         support_reweighted = np.zeros(n_samples, dtype=bool)
         support_reweighted[mask] = True
-        self._set_covariance(covariance_reweighted)
-        self.location_ = location_reweighted
-        self.support_ = support_reweighted
+
         X_centered = data - self.location_
         self.dist_ = np.sum(np.dot(X_centered, self.get_precision()) * X_centered, 1)
         return location_reweighted, covariance_reweighted, support_reweighted
